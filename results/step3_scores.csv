@@ -1,0 +1,7 @@
+model,RMSE_logRV,R2_oos,QLIKE
+persistence,1.0533,0.0131,0.718
+seasonal_naive,0.8448,0.365,0.5481
+har,0.8397,0.3728,0.3937
+har_season,0.6918,0.5743,0.3031
+random_forest,0.6797,0.589,0.3195
+xgboost,0.6762,0.5932,0.3103

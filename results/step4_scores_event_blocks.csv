@@ -1,0 +1,5 @@
+,RMSE_logRV,R2_oos,QLIKE
+har_season,1.4805,-1.6376,1.9606
+har_season_events,0.7955,0.2385,0.3497
+xgboost,1.3765,-1.2801,1.7802
+xgboost_events,0.8296,0.1717,0.4041
