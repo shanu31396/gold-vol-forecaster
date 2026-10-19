@@ -1,6 +1,8 @@
 import time, numpy as np, pandas as pd, torch
 from pathlib import Path
+import os
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 IN_FILE = Path("data/processed/news_headlines.csv")
 OUT = Path("data/processed/news_scored.csv")
 MODEL = "ProsusAI/finbert"
@@ -8,6 +10,10 @@ BATCH = 32
 SAVE_EVERY = 2000
 device = "cuda" if torch.cuda.is_available() else "cpu"
 def score(titles, tok, model):
+    titles = [
+        str(t).strip() if (t is not None and pd.notna(t) and str(t).strip()) else "gold market"
+        for t in titles
+    ]
     enc = tok(titles, padding=True, truncation=True, max_length=64, return_tensors="pt").to(device)
     with torch.no_grad():
         probs = torch.softmax(model(**enc).logits, dim=1).cpu().numpy()
